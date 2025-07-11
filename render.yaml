@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: bakerz-app
+    env: docker
+    plan: free
+    branch: main
+    dockerfilePath: Dockerfile
+    buildCommand: ""
+    startCommand: ""
+    autoDeploy: true
