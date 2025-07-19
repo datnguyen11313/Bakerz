@@ -323,21 +323,24 @@
 
 
     <!-- Product Section Strat -->
-<!-- Product Section Strat -->
+<!-- Product Section Start -->
+@auth
 <div class="section-padding-03 pt-0">
     <div class="container">
         <div class="row">
-            <div class="col-12" >
+            <div class="col-12">
                 <div class="section-title-05">
-
-                <h5 class="section-title-05__title"><span>Most recently purchased products</span></h5>
-                <a href="{{ route('shop.filter_nonCatagory', ['isOption' => 2]) }}" class="read-more"
-                ><span>show more</span
-                ><i class="lastudioicon lastudioicon-right-arrow"></i
-                ></a>
+                    <h5 class="section-title-05__title">
+                        <span>Most recently purchased products</span>
+                    </h5>
+                    <a href="{{ route('shop.filter_nonCatagory', ['isOption' => 2]) }}" class="read-more">
+                        <span>show more</span>
+                        <i class="lastudioicon lastudioicon-right-arrow"></i>
+                    </a>
                 </div>
             </div>
         </div>
+
         <div class="product-active">
             <div class="swiper">
                 <div class="swiper-wrapper">
@@ -353,50 +356,51 @@
                                     </a>
                                     <ul class="product-item__meta">
                                         <li class="product-item__meta-action">
-                                            <a
-                                            class="labtn-icon-quickview quickview"
-                                            href="#"
-                                            data-product-id="{{ $product->product_id }}"
-                                            data-bs-tooltip="tooltip"
-                                            data-bs-placement="top"
-                                            title=""
-                                            data-bs-original-title="Quick View"
-                                            aria-label="Quick View"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#exampleProductModal"
-                                            ></a>
+                                            <a class="labtn-icon-quickview quickview"
+                                               href="#"
+                                               data-product-id="{{ $product->product_id }}"
+                                               data-bs-tooltip="tooltip"
+                                               data-bs-placement="top"
+                                               title=""
+                                               data-bs-original-title="Quick View"
+                                               aria-label="Quick View"
+                                               data-bs-toggle="modal"
+                                               data-bs-target="#exampleProductModal">
+                                            </a>
                                         </li>
                                         <li class="product-item__meta-action">
-                                            <a
-                                            class="shadow-1 labtn-icon-cart add-to-cart"
-                                            href="#"
-                                            data-product-id="{{ $product->product_id }}"
-                                            ></a>
+                                            <a class="shadow-1 labtn-icon-cart add-to-cart"
+                                               href="#"
+                                               data-product-id="{{ $product->product_id }}">
+                                            </a>
                                         </li>
                                         <li class="product-item__meta-action">
-                                            <a class="labtn-icon-wishlist" href="#" data-product-id="{{ $product->product_id }}" data-bs-tooltip="tooltip" data-bs-placement="top" title="Add to wishlist"></a>
+                                            <a class="labtn-icon-wishlist"
+                                               href="#"
+                                               data-product-id="{{ $product->product_id }}"
+                                               data-bs-tooltip="tooltip"
+                                               data-bs-placement="top"
+                                               title="Add to wishlist">
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="product-item__content pt-5">
                                     <h5 class="product-item__title">
-                                        <a href="{{ route('product.single', ['product' => $product->product_id]) }}">{{ $product->product_name }}</a>
+                                        <a href="{{ route('product.single', ['product' => $product->product_id]) }}">
+                                            {{ $product->product_name }}
+                                        </a>
                                     </h5>
                                     <span class="product-item__price">
                                         @if ($product->price != $product->getDiscountedPrice())
-                                        <del>{{ formatPriceVND($product->price) }}</del>
-                                        <!-- Giá gốc -->
-
-                                        <strong style="color: red;"
-                                        >${{ number_format($product->getDiscountedPrice(),2)
-                                        }}</strong
-                                        >
-                                        <!-- Giá sau khi giảm -->
-                                        @else {{ formatPriceVND($product->price) }}
-                                        <!-- Giá không giảm -->
+                                            <del>{{ formatPriceVND($product->price) }}</del>
+                                            <strong style="color: red;">
+                                                ${{ number_format($product->getDiscountedPrice(),2) }}
+                                            </strong>
+                                        @else
+                                            {{ formatPriceVND($product->price) }}
                                         @endif
                                     </span>
-
                                 </div>
                             </div>
                         </div>
@@ -410,6 +414,27 @@
         </div>
     </div>
 </div>
+@endauth
+
+@guest
+<div class="section-padding-03 pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title-05 text-center">
+                    <h5 class="section-title-05__title">
+                        <span>Most recently purchased products</span>
+                    </h5>
+                    <a href="{{ route('login') }}" class="read-more">
+                        <span>show more</span>
+                        <i class="lastudioicon lastudioicon-right-arrow"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endguest
 <!-- Product Section End -->
 
 
