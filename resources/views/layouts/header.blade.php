@@ -869,7 +869,21 @@ $(document).ready(function () {
             });
         }
 
+          document.querySelectorAll('.mobile-menu-expand').forEach(function (toggle) {
+    toggle.addEventListener('click', function (e) {
+      const parentLi = toggle.closest('li.menu-item-has-children');
+      parentLi.classList.toggle('active-expand');
 
+      // Toggle sub menu visibility
+      const submenu = parentLi.querySelector('.sub-menu');
+      if (submenu) {
+        submenu.style.display =
+          submenu.style.display === 'block' ? 'none' : 'block';
+      }
+
+      e.stopPropagation(); // Tránh lặp click với phần tử cha
+    });
+  });
 
 
 
